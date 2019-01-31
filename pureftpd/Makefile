@@ -1,5 +1,5 @@
-#
-# Copyright (C) 2011-2018 Entware
+
+## Copyright (C) 2011-2018 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -30,7 +30,7 @@ define Package/pureftpd
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=File Transfer
-	DEPENDS:=+libsodium +libopenssl +libmysqlclient
+	DEPENDS:=+libsodium +libopenssl +libmysqlclient +libelf1
 	TITLE:=Pure FTP server
 	URL:=http://www.pureftpd.org/
 	MAINTAINER:=Entware team, https://entware.net
