@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2017 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=redis
-PKG_VERSION:=5.0.3
+PKG_VERSION:=4.0.6
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://download.redis.io/releases
-PKG_HASH:=e290b4ddf817b26254a74d5d564095b11f9cd20d8f165459efa53eb63cd93e02
+PKG_HASH:=769b5d69ec237c3e0481a262ff5306ce30db9b5c8ceb14d1023491ca7be5f6fa
 
 PKG_INSTALL:=1
 
@@ -27,7 +27,7 @@ define Package/redis
 	TITLE:=in-memory key-value cache and store
 	DEPENDS:=+libatomic +libpthread
 	URL:=http://redis.io/
-	MAINTAINER:=Entware team, https://entware.net
+	MAINTAINER:=Entware team, http://entware.net
 endef
 
 define Package/redis/description
