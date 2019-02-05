@@ -1,0 +1,39 @@
+From 833726e82d0aea8700ce813e05beb9a703293afe Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Sat, 2 Feb 2019 15:09:32 +0100
+Subject: [PATCH] define std_round locally
+
+---
+ src/cryfs-cli/Cli.cpp | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/src/cryfs-cli/Cli.cpp b/src/cryfs-cli/Cli.cpp
+index 8a80a4d..5cc2618 100644
+--- a/src/cryfs-cli/Cli.cpp
++++ b/src/cryfs-cli/Cli.cpp
+@@ -26,6 +26,13 @@
+ #include "Environment.h"
+ #include <cryfs/CryfsException.h>
+ 
++#define std_round fround
++double fround( double value )
++	  {
++	  return floor( value + 0.5 );
++	  }
++
++
+ //TODO Many functions accessing the ProgramOptions object. Factor out into class that stores it as a member.
+ //TODO Factor out class handling askPassword
+ 
+@@ -273,7 +280,7 @@ namespace cryfs {
+         if (minutes == none) {
+             return none;
+         }
+-        uint64_t millis = std::round(60000 * (*minutes));
++        uint64_t millis = std_round(60000 * (*minutes));
+         return make_unique_ref<CallAfterTimeout>(milliseconds(millis), callback);
+     }
+ 
+-- 
+2.11.0
+

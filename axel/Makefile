@@ -22,7 +22,7 @@ define Package/axel
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=File Transfer
-	DEPENDS:=+libopenssl
+	DEPENDS:=+libopenssl +libpthread
 	TITLE:=axel download accelerator
 	URL:=https://github.com/axel-download-accelerator/axel
 	MAINTAINER:=Entware team, https://entware.net
