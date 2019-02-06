@@ -1,0 +1,40 @@
+From 8c22ebec45db3e8990a0077607f71a3f502c01f1 Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Wed, 6 Feb 2019 14:48:13 +0100
+Subject: [PATCH] fixed MAP_HUGETLB definion and remove pipe2 refference as not
+ available
+
+---
+ src/src/core_helpers.c | 2 +-
+ src/src/core_thrp.c    | 2 --
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/src/src/core_helpers.c b/src/src/core_helpers.c
+index e9b7780..3b742ad 100644
+--- a/src/src/core_helpers.c
++++ b/src/src/core_helpers.c
+@@ -63,7 +63,7 @@
+ 
+ #include "mem_find.h"
+ #include "core_helpers.h"
+-
++#define MAP_HUGETLB 0x0040000
+ 
+ 
+ void *
+diff --git a/src/src/core_thrp.c b/src/src/core_thrp.c
+index 63eb96e..3595ba5 100644
+--- a/src/src/core_thrp.c
++++ b/src/src/core_thrp.c
+@@ -666,8 +666,6 @@ thrpt_data_event_init(thrpt_p thrpt) {
+ 	if ((uintptr_t)-1 == thrpt->io_fd)
+ 		return (errno);
+ 	/* Init threads message exchange. */
+-	if (-1 == pipe2(thrpt->queue_fd, O_NONBLOCK))
+-		return (errno);
+ 	thrpt->queue_udata.cb_func = NULL;
+ 	thrpt->queue_udata.ident = thrpt->queue_fd[0];
+ 	thrpt->queue_udata.thrpt = thrpt;
+-- 
+2.11.0
+
