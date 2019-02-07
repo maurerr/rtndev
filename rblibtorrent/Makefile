@@ -51,6 +51,7 @@ CONFIGURE_VARS+= CC=$(TARGET_CXX)
 
 # Ensure target python headers come bore host headers!!!
 TARGET_CFLAGS+="-I$(STAGING_DIR)/opt/include/python2.7/"
+TARGET_CXXFLAGS+= -std=c++11
 
 define Build/InstallDev
 	mkdir -p $(1)/opt/include
