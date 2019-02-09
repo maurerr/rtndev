@@ -35,6 +35,7 @@ endef
 CONFIGURE_ARGS += \
 	--enable-embedded-cryptopp \
 	--oldincludedir="$(STAGING_DIR)/opt/include" \
+	--disable-fortify
 
 
 define Build/Prepare
