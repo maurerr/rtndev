@@ -25,7 +25,7 @@ define Package/redis
 	CATEGORY:=Utilities
 	SUBMENU:=database
 	TITLE:=in-memory key-value cache and store
-	DEPENDS:=+libatomic +libpthread
+	DEPENDS:=+libatomic +libpthread +librt +libubacktrace
 	URL:=http://redis.io/
 	MAINTAINER:=Entware team, https://entware.net
 endef
@@ -40,6 +40,7 @@ MAKE_FLAGS += \
 	PREFIX="$(PKG_INSTALL_DIR)/opt"
 
 TARGET_LDFLAGS += -ldl -latomic
+TARGET_CXXFLAGS += -std=c++11
 
 define Build/Compile
 	sed -e 's#^\(REAL_CFLAGS.* \)$$$$(ARCH)#\1#g' -i $(PKG_BUILD_DIR)/deps/hiredis/Makefile
