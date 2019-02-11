@@ -15,6 +15,7 @@ index 63eb96e..ebb4d57 100644
  #include <sys/socket.h>
  #endif /* Linux specific code. */
  
++#include <errno.h>
 +int __set_errno(int n)
 +{
 +           errno = n;
@@ -31,7 +32,6 @@ index 63eb96e..ebb4d57 100644
 +           __set_errno (ENOSYS);
 +           return -1;
 +}
-+
 +
 +
  #include <sys/queue.h>
