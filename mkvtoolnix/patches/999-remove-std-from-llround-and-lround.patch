@@ -1,0 +1,334 @@
+From 186857f78b3ca6470fe63aed7353144d21f7a0b6 Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Tue, 12 Feb 2019 07:52:27 +0100
+Subject: [PATCH] remove std from llround and lround
+
+---
+ src/common/avc_es_parser.cpp     | 4 ++--
+ src/common/hevc_es_parser.cpp    | 4 ++--
+ src/common/theora.cpp            | 4 ++--
+ src/extract/cuesheets.cpp        | 2 +-
+ src/extract/xtr_avi.cpp          | 2 +-
+ src/input/r_avi.cpp              | 4 ++--
+ src/input/r_matroska.cpp         | 2 +-
+ src/input/r_ogm.cpp              | 4 ++--
+ src/input/r_tta.cpp              | 2 +-
+ src/merge/cluster_helper.h       | 2 +-
+ src/merge/generic_packetizer.cpp | 4 ++--
+ src/merge/output_control.cpp     | 2 +-
+ src/merge/timestamp_factory.h    | 2 +-
+ src/output/p_avc.cpp             | 4 ++--
+ src/output/p_dirac.cpp           | 4 ++--
+ src/output/p_hevc.cpp            | 4 ++--
+ src/output/p_tta.cpp             | 8 ++++----
+ src/output/p_wavpack.cpp         | 4 ++--
+ src/propedit/tag_target.cpp      | 2 +-
+ 19 files changed, 32 insertions(+), 32 deletions(-)
+
+diff --git a/src/common/avc_es_parser.cpp b/src/common/avc_es_parser.cpp
+index 2a154df..86e44c5 100644
+--- a/src/common/avc_es_parser.cpp
++++ b/src/common/avc_es_parser.cpp
+@@ -946,8 +946,8 @@ es_parser_c::get_display_dimensions(int width,
+   if (0 >= height)
+     height = get_height();
+ 
+-  return std::make_pair<int64_t, int64_t>(1 <= m_par ? std::llround(width * boost::rational_cast<double>(m_par)) : width,
+-                                          1 <= m_par ? height                                                    : std::llround(height / boost::rational_cast<double>(m_par)));
++  return std::make_pair<int64_t, int64_t>(1 <= m_par ? llround(width * boost::rational_cast<double>(m_par)) : width,
++                                          1 <= m_par ? height                                                    : llround(height / boost::rational_cast<double>(m_par)));
+ }
+ 
+ size_t
+diff --git a/src/common/hevc_es_parser.cpp b/src/common/hevc_es_parser.cpp
+index aa77fc3..9a5c76b 100644
+--- a/src/common/hevc_es_parser.cpp
++++ b/src/common/hevc_es_parser.cpp
+@@ -903,8 +903,8 @@ es_parser_c::get_display_dimensions(int width,
+   if (0 >= height)
+     height = get_height();
+ 
+-  return std::make_pair<int64_t, int64_t>(1 <= m_par ? std::llround(width * boost::rational_cast<double>(m_par)) : width,
+-                                          1 <= m_par ? height                                                    : std::llround(height / boost::rational_cast<double>(m_par)));
++  return std::make_pair<int64_t, int64_t>(1 <= m_par ? llround(width * boost::rational_cast<double>(m_par)) : width,
++                                          1 <= m_par ? height                                                    : llround(height / boost::rational_cast<double>(m_par)));
+ }
+ 
+ size_t
+diff --git a/src/common/theora.cpp b/src/common/theora.cpp
+index 87a37b6..928fa99 100644
+--- a/src/common/theora.cpp
++++ b/src/common/theora.cpp
+@@ -64,11 +64,11 @@ theora_parse_identification_header(unsigned char *buffer,
+ 
+   if ((0 != header.parn) && (0 != header.pard)) {
+     if (((float)header.fmbw / (float)header.fmbh) < ((float)header.parn / (float)header.pard)) {
+-      header.display_width  = std::llround(static_cast<double>(header.fmbw) * header.parn / header.pard);
++      header.display_width  = llround(static_cast<double>(header.fmbw) * header.parn / header.pard);
+       header.display_height = header.fmbh;
+     } else {
+       header.display_width  = header.fmbw;
+-      header.display_height = std::llround(static_cast<double>(header.fmbh) * header.pard / header.parn);
++      header.display_height = llround(static_cast<double>(header.fmbh) * header.pard / header.parn);
+     }
+   }
+ }
+diff --git a/src/extract/cuesheets.cpp b/src/extract/cuesheets.cpp
+index cea80e8..3b00dca 100644
+--- a/src/extract/cuesheets.cpp
++++ b/src/extract/cuesheets.cpp
+@@ -182,7 +182,7 @@ write_cuesheet(std::string file_name,
+                            k,
+                             temp_index / 1'000'000 / 1'000  / 60,
+                            (temp_index / 1'000'000 / 1'000) % 60,
+-                           std::llround(static_cast<double>(temp_index % 1'000'000'000ll) * 75.0 / 1'000'000'000.0)));
++                           llround(static_cast<double>(temp_index % 1'000'000'000ll) * 75.0 / 1'000'000'000.0)));
+     }
+ 
+     print_if_available("DATE",          "    REM DATE \"{0}\"\n"); // until 0.9.6
+diff --git a/src/extract/xtr_avi.cpp b/src/extract/xtr_avi.cpp
+index 376c3cd..2317199 100644
+--- a/src/extract/xtr_avi.cpp
++++ b/src/extract/xtr_avi.cpp
+@@ -91,7 +91,7 @@ xtr_avi_c::handle_frame(xtr_frame_t &f) {
+ 
+   if (((double)f.duration / 1000000.0 - (1000.0 / m_fps)) >= 1.5) {
+     int k;
+-    int nfr = std::llround(static_cast<double>(f.duration) / 1000000.0 * m_fps / 1000.0);
++    int nfr = llround(static_cast<double>(f.duration) / 1000000.0 * m_fps / 1000.0);
+     for (k = 2; k <= nfr; k++)
+       AVI_write_frame(m_avi, nullptr, 0, 0);
+   }
+diff --git a/src/input/r_avi.cpp b/src/input/r_avi.cpp
+index fb34175..82f1d8e 100644
+--- a/src/input/r_avi.cpp
++++ b/src/input/r_avi.cpp
+@@ -848,12 +848,12 @@ avi_reader_c::extended_identify_mpeg4_l2(mtx::id::info_c &info) {
+ 
+     int disp_width, disp_height;
+     if (aspect_ratio > (static_cast<double>(m_video_width) / m_video_height)) {
+-      disp_width  = std::llround(m_video_height * aspect_ratio);
++      disp_width  = llround(m_video_height * aspect_ratio);
+       disp_height = m_video_height;
+ 
+     } else {
+       disp_width  = m_video_width;
+-      disp_height = std::llround(m_video_width / aspect_ratio);
++      disp_height = llround(m_video_width / aspect_ratio);
+     }
+ 
+     info.add(mtx::id::display_dimensions, fmt::format("{0}x{1}", disp_width, disp_height));
+diff --git a/src/input/r_matroska.cpp b/src/input/r_matroska.cpp
+index 2a89ae8..1ff6b5e 100644
+--- a/src/input/r_matroska.cpp
++++ b/src/input/r_matroska.cpp
+@@ -1047,7 +1047,7 @@ kax_reader_c::read_headers_info(mm_io_c *io,
+     delete element_found;
+ 
+   m_tc_scale          = FindChildValue<KaxTimecodeScale, uint64_t>(info, 1000000);
+-  m_segment_duration  = std::llround(FindChildValue<KaxDuration>(info) * m_tc_scale);
++  m_segment_duration  = llround(FindChildValue<KaxDuration>(info) * m_tc_scale);
+   m_title             = to_utf8(FindChildValue<KaxTitle>(info));
+   auto muxing_date    = FindChild<KaxDateUTC>(info);
+   if (muxing_date)
+diff --git a/src/input/r_ogm.cpp b/src/input/r_ogm.cpp
+index 25496e6..19a3213 100644
+--- a/src/input/r_ogm.cpp
++++ b/src/input/r_ogm.cpp
+@@ -1606,11 +1606,11 @@ ogm_v_vp8_demuxer_c::initialize() {
+ 
+   if ((0 != par_num) && (0 != par_den)) {
+     if ((static_cast<double>(pixel_width) / static_cast<double>(pixel_height)) < (static_cast<double>(par_num) / static_cast<double>(par_den))) {
+-      display_width  = std::llround(static_cast<double>(pixel_width) * par_num / par_den);
++      display_width  = llround(static_cast<double>(pixel_width) * par_num / par_den);
+       display_height = pixel_height;
+     } else {
+       display_width  = pixel_width;
+-      display_height = std::llround(static_cast<double>(pixel_height) * par_den / par_num);
++      display_height = llround(static_cast<double>(pixel_height) * par_den / par_num);
+     }
+ 
+   } else {
+diff --git a/src/input/r_tta.cpp b/src/input/r_tta.cpp
+index b532cc7..2deaa5c 100644
+--- a/src/input/r_tta.cpp
++++ b/src/input/r_tta.cpp
+@@ -131,7 +131,7 @@ tta_reader_c::read(generic_packetizer_c *,
+     double samples_left = (double)get_uint32_le(&header.data_length) - (seek_points.size() - 1) * TTA_FRAME_TIME * get_uint32_le(&header.sample_rate);
+     mxverb(2, fmt::format("tta: samples_left {0}\n", samples_left));
+ 
+-    PTZR0->process(new packet_t(mem, -1, std::llround(samples_left * 1000000000.0 / get_uint32_le(&header.sample_rate))));
++    PTZR0->process(new packet_t(mem, -1, llround(samples_left * 1000000000.0 / get_uint32_le(&header.sample_rate))));
+   } else
+     PTZR0->process(new packet_t(mem));
+ 
+diff --git a/src/merge/cluster_helper.h b/src/merge/cluster_helper.h
+index a6656aa..36d8569 100644
+--- a/src/merge/cluster_helper.h
++++ b/src/merge/cluster_helper.h
+@@ -25,7 +25,7 @@
+ #include "common/timestamp.h"
+ #include "merge/libmatroska_extensions.h"
+ 
+-#define ROUND_TIMESTAMP_SCALE(a) (std::llround(static_cast<double>(a) / static_cast<double>(g_timestamp_scale)) * static_cast<int64_t>(g_timestamp_scale))
++#define ROUND_TIMESTAMP_SCALE(a) (llround(static_cast<double>(a) / static_cast<double>(g_timestamp_scale)) * static_cast<int64_t>(g_timestamp_scale))
+ 
+ class generic_packetizer_c;
+ class render_groups_c;
+diff --git a/src/merge/generic_packetizer.cpp b/src/merge/generic_packetizer.cpp
+index bc1dafd..40f90fb 100644
+--- a/src/merge/generic_packetizer.cpp
++++ b/src/merge/generic_packetizer.cpp
+@@ -1056,12 +1056,12 @@ generic_packetizer_c::set_headers() {
+             m_ti.m_aspect_ratio = (float)m_hvideo_pixel_width * m_ti.m_aspect_ratio / (float)m_hvideo_pixel_height;
+ 
+           if (m_ti.m_aspect_ratio > ((float)m_hvideo_pixel_width / (float)m_hvideo_pixel_height)) {
+-            m_hvideo_display_width  = std::llround(m_hvideo_pixel_height * m_ti.m_aspect_ratio);
++            m_hvideo_display_width  = llround(m_hvideo_pixel_height * m_ti.m_aspect_ratio);
+             m_hvideo_display_height = m_hvideo_pixel_height;
+ 
+           } else {
+             m_hvideo_display_width  = m_hvideo_pixel_width;
+-            m_hvideo_display_height = std::llround(m_hvideo_pixel_width / m_ti.m_aspect_ratio);
++            m_hvideo_display_height = llround(m_hvideo_pixel_width / m_ti.m_aspect_ratio);
+           }
+         }
+       }
+diff --git a/src/merge/output_control.cpp b/src/merge/output_control.cpp
+index e600f36..7f6f139 100644
+--- a/src/merge/output_control.cpp
++++ b/src/merge/output_control.cpp
+@@ -214,7 +214,7 @@ family_uids_c::add_family_uid(const KaxSegmentFamily &family) {
+ 
+ static int64_t
+ calculate_file_duration() {
+-  return std::llround(static_cast<double>(g_cluster_helper->get_duration()) / static_cast<double>(g_timestamp_scale));
++  return llround(static_cast<double>(g_cluster_helper->get_duration()) / static_cast<double>(g_timestamp_scale));
+ }
+ 
+ static void
+diff --git a/src/merge/timestamp_factory.h b/src/merge/timestamp_factory.h
+index fc25413..d186eb8 100644
+--- a/src/merge/timestamp_factory.h
++++ b/src/merge/timestamp_factory.h
+@@ -186,7 +186,7 @@ public:
+                                              const std::string &source_name,
+                                              int64_t tid)
+     : timestamp_factory_c{"", source_name, tid, 1}
+-    , m_default_duration{std::llround(default_duration * tcsync.numerator / tcsync.denominator)}
++    , m_default_duration{llround(default_duration * tcsync.numerator / tcsync.denominator)}
+     , m_tcsync{tcsync}
+   {
+   }
+diff --git a/src/output/p_avc.cpp b/src/output/p_avc.cpp
+index 9d75871..d18a945 100644
+--- a/src/output/p_avc.cpp
++++ b/src/output/p_avc.cpp
+@@ -92,8 +92,8 @@ avc_video_packetizer_c::extract_aspect_ratio() {
+ 
+   auto par = static_cast<double>(result.numerator) / static_cast<double>(result.denominator);
+ 
+-  set_video_display_dimensions(1 <= par ? std::llround(m_width * par) : m_width,
+-                               1 <= par ? m_height                    : std::llround(m_height / par),
++  set_video_display_dimensions(1 <= par ? llround(m_width * par) : m_width,
++                               1 <= par ? m_height                    : llround(m_height / par),
+                                generic_packetizer_c::ddu_pixels,
+                                OPTION_SOURCE_BITSTREAM);
+ 
+diff --git a/src/output/p_dirac.cpp b/src/output/p_dirac.cpp
+index 98a1a5d..2fb81db 100644
+--- a/src/output/p_dirac.cpp
++++ b/src/output/p_dirac.cpp
+@@ -48,9 +48,9 @@ dirac_video_packetizer_c::set_headers() {
+ 
+     if ((0 != m_seqhdr.aspect_ratio_numerator) && (0 != m_seqhdr.aspect_ratio_denominator)) {
+       if (m_seqhdr.aspect_ratio_numerator > m_seqhdr.aspect_ratio_denominator)
+-        display_width  = std::llround(display_width  * m_seqhdr.aspect_ratio_numerator   / m_seqhdr.aspect_ratio_denominator);
++        display_width  = llround(display_width  * m_seqhdr.aspect_ratio_numerator   / m_seqhdr.aspect_ratio_denominator);
+       else
+-        display_height = std::llround(display_height * m_seqhdr.aspect_ratio_denominator / m_seqhdr.aspect_ratio_numerator);
++        display_height = llround(display_height * m_seqhdr.aspect_ratio_denominator / m_seqhdr.aspect_ratio_numerator);
+     }
+ 
+     set_video_display_dimensions(display_width, display_height, generic_packetizer_c::ddu_pixels, OPTION_SOURCE_BITSTREAM);
+diff --git a/src/output/p_hevc.cpp b/src/output/p_hevc.cpp
+index 52b5375..b1edead 100644
+--- a/src/output/p_hevc.cpp
++++ b/src/output/p_hevc.cpp
+@@ -62,8 +62,8 @@ hevc_video_packetizer_c::extract_aspect_ratio() {
+ 
+   auto par = static_cast<double>(result.numerator) / static_cast<double>(result.denominator);
+ 
+-  set_video_display_dimensions(1 <= par ? std::llround(m_width * par) : m_width,
+-                               1 <= par ? m_height                    : std::llround(m_height / par),
++  set_video_display_dimensions(1 <= par ? llround(m_width * par) : m_width,
++                               1 <= par ? m_height                    : llround(m_height / par),
+                                generic_packetizer_c::ddu_pixels,
+                                OPTION_SOURCE_BITSTREAM);
+ 
+diff --git a/src/output/p_tta.cpp b/src/output/p_tta.cpp
+index 609f894..b1fd16f 100644
+--- a/src/output/p_tta.cpp
++++ b/src/output/p_tta.cpp
+@@ -34,7 +34,7 @@ tta_packetizer_c::tta_packetizer_c(generic_reader_c *p_reader,
+   , m_samples_output(0)
+ {
+   set_track_type(track_audio);
+-  set_track_default_duration(std::llround(1000000000.0 * TTA_FRAME_TIME));
++  set_track_default_duration(llround(1000000000.0 * TTA_FRAME_TIME));
+ }
+ 
+ tta_packetizer_c::~tta_packetizer_c() {
+@@ -52,14 +52,14 @@ tta_packetizer_c::set_headers() {
+ 
+ int
+ tta_packetizer_c::process(packet_cptr packet) {
+-  packet->timestamp = std::llround((double)m_samples_output * 1000000000 / m_sample_rate);
++  packet->timestamp = llround((double)m_samples_output * 1000000000 / m_sample_rate);
+   if (-1 == packet->duration) {
+     packet->duration  = m_htrack_default_duration;
+-    m_samples_output += std::llround(m_sample_rate * TTA_FRAME_TIME);
++    m_samples_output += llround(m_sample_rate * TTA_FRAME_TIME);
+ 
+   } else {
+     mxverb(2, fmt::format("tta_packetizer: incomplete block with duration {0}\n", packet->duration));
+-    m_samples_output += std::llround(packet->duration * m_sample_rate / 1000000000ll);
++    m_samples_output += llround(packet->duration * m_sample_rate / 1000000000ll);
+   }
+ 
+   add_packet(packet);
+diff --git a/src/output/p_wavpack.cpp b/src/output/p_wavpack.cpp
+index fb024d3..0e0256e 100644
+--- a/src/output/p_wavpack.cpp
++++ b/src/output/p_wavpack.cpp
+@@ -58,12 +58,12 @@ wavpack_packetizer_c::process(packet_cptr packet) {
+   int64_t samples = get_uint32_le(packet->data->get_buffer());
+ 
+   if (-1 == packet->duration)
+-    packet->duration = std::llround(samples * 1000000000 / m_sample_rate);
++    packet->duration = llround(samples * 1000000000 / m_sample_rate);
+   else
+     mxverb(2, fmt::format("wavpack_packetizer: incomplete block with duration {0}\n", packet->duration));
+ 
+   if (-1 == packet->timestamp)
+-    packet->timestamp = std::llround((double)m_samples_output * 1000000000 / m_sample_rate);
++    packet->timestamp = llround((double)m_samples_output * 1000000000 / m_sample_rate);
+ 
+   m_samples_output += samples;
+   add_packet(packet);
+diff --git a/src/propedit/tag_target.cpp b/src/propedit/tag_target.cpp
+index 46187d2..dc2b22f 100644
+--- a/src/propedit/tag_target.cpp
++++ b/src/propedit/tag_target.cpp
+@@ -362,7 +362,7 @@ tag_target_c::account_all_clusters() {
+ 
+     account_one_cluster(*cluster);
+ 
+-    auto current_progress = std::lround(file.getFilePointer() * 100ull / static_cast<double>(file_size));
++    auto current_progress = lround(file.getFilePointer() * 100ull / static_cast<double>(file_size));
+     if (current_progress != previous_progress) {
+       mxinfo(fmt::format(Y("Progress: {0}%{1}"), current_progress, "\r"));
+       previous_progress = current_progress;
+-- 
+2.11.0
+
