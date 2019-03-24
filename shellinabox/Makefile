@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2018 Entware
+# Copyright (C) 2017-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -12,7 +12,7 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=shellinabox
 PKG_VERSION:=2.20
 PKG_REV:=048cecd2e77d659c8fefcd2e7dc437c533abeab4
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)

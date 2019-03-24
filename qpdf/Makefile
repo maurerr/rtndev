@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2013 Francisco Borges
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -10,12 +10,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qpdf
-PKG_VERSION:=8.2.1
+PKG_VERSION:=8.4.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/$(PKG_NAME)
-PKG_HASH:=f445d3ebda833fe675b7551378f41fa1971cc6f7a7921bbbb94d3a71a404abc9
+PKG_HASH:=39018f3bff700c68e41f6d44ea9f7842e2a5af200a80b2cdec7fa32a4abac4a0
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1

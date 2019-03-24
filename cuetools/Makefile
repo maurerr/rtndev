@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -11,14 +11,15 @@ PKG_NAME:=cuetools
 PKG_VERSION:=1.4.1
 PKG_REV:=365e379483ea180bcfa272d89a2524da55b1d600
 PKG_RELEASE:=1
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_URL:=https://github.com/svend/cuetools
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=$(PKG_REV)
+
+PKG_FIXUP:=autoreconf
+PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
 

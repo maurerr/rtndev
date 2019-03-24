@@ -1,9 +1,10 @@
 #
-# Copyright (C) 2015-2018 Entware
+# Copyright (C) 2015-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# Abandoned in 2012
 
 include $(TOPDIR)/rules.mk
 

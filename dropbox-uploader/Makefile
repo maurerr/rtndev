@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,10 +8,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dropbox-uploader
-PKG_VERSION:=1.0-2018.01.22
+PKG_VERSION:=1.0-20180517
 PKG_RELEASE:=1
 
-PKG_REV:=f1d8544c8f65c44a015cf3e993567bf42187cfac
+PKG_REV:=b362ebf91bdf3619509210ed28b6201d7b189c69
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_PROTO:=git

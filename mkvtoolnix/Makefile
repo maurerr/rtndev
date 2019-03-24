@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mkvtoolnix
-PKG_VERSION:=29.0.0
+PKG_VERSION:=31.0.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://mkvtoolnix.download/sources
-#PKG_HASH:=d51e63c356f9f0c92cc0b01ff6e78253954c74186be6ef4c40c5690d18fda7e0
+PKG_HASH:=f98a8c3a00e48ceb9a56ec5cb1f89b7663bbc5ace88713f9f087fdaaa2501b35
 
 PKG_BUILD_DEPENDS:=ruby/host
 

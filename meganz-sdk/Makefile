@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=meganz-sdk
-PKG_VERSION:=3.4.4
-PKG_REV:=0fbbaa4e41fd5c08bb6efbd4c0e966d7207040a3
+PKG_VERSION:=3.4.7
+PKG_REV:=84d906dcfe0e6803f8971e65d0b1c5e2945d97df
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2018 Entware
+# Copyright (C) 2017-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=suricata
-PKG_VERSION:=4.1.1
+PKG_VERSION:=4.1.2
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.openinfosecfoundation.org/download
-PKG_HASH:=c30058072029e7fde09133674d9f2f840a674eecbeae1f8b1779a3aae8166bb0
+PKG_HASH:=73575b041a50cc48a2a53f6503ab4d355166d7acbd4997cd04045f848f8bea96
 
 PKG_INSTALL:=1
 

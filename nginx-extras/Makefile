@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -13,12 +13,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=nginx-extras
-PKG_VERSION:=1.14.2
+PKG_VERSION:=1.15.8
 PKG_RELEASE:=1
 
 PKG_SOURCE:=nginx-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://nginx.org/download
-PKG_HASH:=002d9f6154e331886a2dd4e6065863c9c1cf8291ae97a1255308572c02be9797
+PKG_HASH:=a8bdafbca87eb99813ae4fcac1ad0875bf725ce19eb265d28268c309b2b40787
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/nginx-$(PKG_VERSION)
 
@@ -57,7 +57,7 @@ endef
 TARGET_CFLAGS += \
 	-I$(STAGING_DIR)/opt/include/libxml2 -Wno-error=parentheses
 
-ifeq ($(CONFIG_GCC_USE_VERSION_7_3_0),y)
+ifeq ($(CONFIG_GCC_USE_VERSION_7_4_0),y)
 TARGET_CFLAGS += -Wno-error=implicit-fallthrough
 endif
 
