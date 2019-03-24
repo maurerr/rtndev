@@ -1,0 +1,25 @@
+From 2410cb073fafd93991419c4c9c3b1330435ca0ef Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Tue, 12 Feb 2019 08:04:06 +0100
+Subject: [PATCH] no definition of pipe2 in uClibc for now
+
+---
+ fileservplugin/PipeFileUnix.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fileservplugin/PipeFileUnix.cpp b/fileservplugin/PipeFileUnix.cpp
+index e58dea4..623e62d 100644
+--- a/fileservplugin/PipeFileUnix.cpp
++++ b/fileservplugin/PipeFileUnix.cpp
+@@ -32,7 +32,7 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ 
+-#if defined(O_CLOEXEC) && !defined(__APPLE__) && !defined(__FreeBSD__)
++#if defined(O_CLOEXEC) && !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(__UCLIBC__)
+ #define clopipe(x) pipe2(x, O_CLOEXEC)
+ #else
+ int clopipe(int* x)
+-- 
+2.11.0
+

@@ -1,0 +1,42 @@
+From a13d462514d1b6c6488fe43dd1e98d5f60cf99aa Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Mon, 11 Feb 2019 14:41:01 +0100
+Subject: [PATCH] define pipe2 function in core_thrp.c
+
+---
+ src/src/core_thrp.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/src/src/core_thrp.c b/src/src/core_thrp.c
+index 63eb96e..ebb4d57 100644
+--- a/src/src/core_thrp.c
++++ b/src/src/core_thrp.c
+@@ -50,6 +50,25 @@
+ #include <sys/socket.h>
+ #endif /* Linux specific code. */
+ 
++#include <errno.h>
++int __set_errno(int n)
++{
++           errno = n;
++                   return -1;
++}
++
++int pipe2 (int pipedes[2], int flags)
++{
++         if (pipedes == NULL)
++           {
++           __set_errno (EINVAL);
++           return -1;
++           }
++           __set_errno (ENOSYS);
++           return -1;
++}
++
++
+ #include <sys/queue.h>
+ #include <inttypes.h>
+ #include <stdlib.h> /* malloc, exit */
+-- 
+2.11.0
+
