@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/urbackup-server
 	SECTION:=utils
 	CATEGORY:=Utilities
-	DEPENDS:=+libcurl +zlib +libstdcpp +libpthread
+	DEPENDS:=+libcurl +zlib +libstdcpp
 	TITLE:=UrBackup Server
 	URL:=http://www.urbackup.org/
 	MAINTAINER:=Entware team, https://entware.net
@@ -35,7 +35,6 @@ endef
 CONFIGURE_ARGS += \
 	--enable-embedded-cryptopp \
 	--oldincludedir="$(STAGING_DIR)/opt/include" \
-	--disable-fortify
 
 
 define Build/Prepare

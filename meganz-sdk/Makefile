@@ -28,7 +28,7 @@ define Package/meganz-sdk
 	CATEGORY:=Network
 	SUBMENU:=File Transfer
 	DEPENDS:=+libcares +libcryptoxx +libcurl +libfuse +libreadline \
-		+libncursesw +libsodium +libsqlite3 +librt 
+		+libncursesw +libsodium +libsqlite3 +libuv
 	TITLE:=MEGA Client Access Engine
 	URL:=https://github.com/meganz/sdk
 	MAINTAINER:=Entware team, https://entware.net
@@ -41,6 +41,7 @@ endef
 CONFIGURE_ARGS += \
 	--disable-doxygen-doc \
 	--without-freeimage \
+	--with-libuv=$(STAGING_DIR)/opt \
 	--with-ffmpeg=$(STAGING_DIR)/opt
 
 TARGET_LDFLAGS += \
