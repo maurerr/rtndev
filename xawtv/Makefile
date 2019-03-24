@@ -1,9 +1,10 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# This is the last version with V4L1 API support
 
 include $(TOPDIR)/rules.mk
 

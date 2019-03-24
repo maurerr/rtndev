@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pixelserv-tls
-PKG_VERSION:=2.2.0
-PKG_REV:=16ac19ff916e4e61284f48ec4d34bdc5f3b0733d
+PKG_VERSION:=2.2.1
+PKG_REV:=1a865556288be274dae0f54a17f26260740d9a56
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2

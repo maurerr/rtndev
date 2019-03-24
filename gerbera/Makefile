@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gerbera
-PKG_VERSION:=1.2
-PKG_REV:=76576cde9a3f42476f05d2b8274aebf202b37c20
-PKG_RELEASE:=1
+PKG_VERSION:=1.3
+PKG_REV:=c7a81fb41e446ee67b3eac90e2caecd6de651a16
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -24,7 +24,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/gerbera
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
-	DEPENDS:=+libffmpeg-full +duktape +libupnp-1.8 +libsqlite3 +libcurl \
+	DEPENDS:=+libffmpeg-full +duktape +libupnp +libsqlite3 +libcurl \
 	    +libtheora +file +libexif +libexpat +libvorbis +libuuid +libstdcpp
 	TITLE:=a free media server
 	URL:=https://gerbera.io
@@ -32,7 +32,7 @@ define Package/gerbera
 endef
 
 define Package/gerbera/description
- UPnP Media Server for 2017 (Based on MediaTomb)
+ Gerbera - UPnP Media Server based on Mediatomb.
 endef
 
 CMAKE_OPTIONS += \

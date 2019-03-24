@@ -1,11 +1,11 @@
 --- a/Source/Pcap_DNSProxy/Definition.h
 +++ b/Source/Pcap_DNSProxy/Definition.h
-@@ -294,7 +294,7 @@
+@@ -313,7 +313,7 @@
  	#define ERROR_LOG_FILE_NAME_MBS                       ("Error.log")
- 	#define FIFO_MESSAGE_FLUSH_DNS                        ("Flush DNS cache of Pcap_DNSProxy")         //The FIFO message to flush dns cache
- 	#define FIFO_MESSAGE_FLUSH_DNS_DOMAIN                 ("Flush DNS cache of Pcap_DNSProxy: ")       //The FIFO message to flush dns cache(Single domain)
--	#define FIFO_PATH_NAME                                ("/tmp/pcap_dnsproxy_fifo")                  //FIFO pathname
-+	#define FIFO_PATH_NAME                                ("/opt/tmp/pcap_dnsproxy_fifo")              //FIFO pathname
+ 	#define FLUSH_DOMAIN_PIPE_MESSAGE_ALL                 ("Flush Pcap_DNSProxy domain cache")         //The FIFO pipe message to flush all domain cache
+ 	#define FLUSH_DOMAIN_PIPE_MESSAGE_SPECIFIC            ("Flush Pcap_DNSProxy domain cache: ")       //The FIFO pipe message to flush specific domain cache
+-	#define FLUSH_DOMAIN_PIPE_PATH_NAME                   ("/tmp/pcap_dnsproxy_fifo")                  //The FIFO pipe pathname to flush domain cache
++	#define FLUSH_DOMAIN_PIPE_PATH_NAME                   ("/opt/tmp/pcap_dnsproxy_fifo")                  //The FIFO pipe pathname to flush domain cache
  #endif
  #define DEFAULT_LOCAL_SERVER_NAME                     ("pcap-dnsproxy.server")                     //Default Local DNS server name
  #if defined(PLATFORM_MACOS)

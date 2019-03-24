@@ -1,22 +1,21 @@
 #
 # Copyright (C) 2013 Francisco Borges
-# Copyright (C) 2011-2018 Entware
+# Copyright (C) 2011-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
 # Makefile taken from http://github.com/FranciscoBorges/openwrt-printing-packages
-# The newer versions requires openjpeg https://github.com/uclouvain/openjpeg
 
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=poppler
-PKG_VERSION:=0.72.0
+PKG_VERSION:=0.74.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://poppler.freedesktop.org
-PKG_HASH:=c1747eb8f26e9e753c4001ed951db2896edc1021b6d0f547a0bd2a27c30ada51
+PKG_HASH:=92e09fd3302567fd36146b36bb707db43ce436e8841219025a82ea9fb0076b2f
 
 PKG_INSTALL:=1
 
@@ -53,7 +52,8 @@ CMAKE_OPTIONS += \
 	-DENABLE_XPDF_HEADERS=ON \
 	-DENABLE_LIBOPENJPEG=unmaintained \
 	-DENABLE_QT5=OFF \
-	-DENABLE_LIBCURL=OFF
+	-DENABLE_LIBCURL=OFF \
+	-DENABLE_UNSTABLE_API_ABI_HEADERS=ON
 
 define Package/libpoppler/install
 	$(INSTALL_DIR) $(1)/opt/lib

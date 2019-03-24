@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2017-2018 Entware
+# Copyright (C) 2017-2019 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,8 +8,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=jdupes
-PKG_VERSION:=1.11.1
-PKG_REV:=e87348004d3e5de3fb430480c5fc6e6d9630a75c
+PKG_VERSION:=1.12
+PKG_REV:=5f8b05ba91741ab00f62b10d767175122c5d19ab
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2

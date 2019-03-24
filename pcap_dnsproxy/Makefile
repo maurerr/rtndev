@@ -1,5 +1,6 @@
 #
-# Copyright (C) 2011-2017 Entware
+# Copyright (C) 2011-2019 Entware
+
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -11,8 +12,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=pcap_dnsproxy
-PKG_VERSION:=0.4.9.4
-PKG_REV:=9a897ac63b34eae98d2d68d3a8ab4c797e992496
+PKG_VERSION:=0.4.9.13
+PKG_REV:=70a40bb3fc7399cc31344c29b993e7e02da4503b
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
