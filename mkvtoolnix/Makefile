@@ -46,8 +46,6 @@ TARGET_LDFLAGS += \
 	-lstdc++ \
 	-lintl \
 
-TARGET_CXXFLAGS+= -g -std=c++14
-
 define Build/Compile
 	cd $(PKG_BUILD_DIR); rake --jobs=1
 endef
