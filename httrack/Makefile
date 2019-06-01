@@ -23,7 +23,7 @@ define Package/httrack
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=File Transfer
-	DEPENDS:=+libopenssl +libpthread
+	DEPENDS:=+libopenssl +libpthread +libubacktrace
 	TITLE:=website copier
 	URL:=http://www.httrack.com
 	MAINTAINER:=Entware team, https://entware.net

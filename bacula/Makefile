@@ -24,7 +24,8 @@ include $(INCLUDE_DIR)/package.mk
 define Package/bacula
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libopenssl +libwrap +libstdcpp +libsqlite3 +liblzo +libacl +libcap +gawk
+  DEPENDS:=+libopenssl +libreadline +libncurses +libpthread +libwrap +libstdcpp \
+	+libsqlite3 +liblzo +libacl +libcap +gawk +libubacktrace
   TITLE:=Open Source Network Backup Solution
   URL:=http://www.bacula.org/
 endef

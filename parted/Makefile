@@ -23,7 +23,7 @@ define Package/parted
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Disc
-	DEPENDS:=+libblkid
+	DEPENDS:=+libblkid +libubacktrace
 	TITLE:=manipulates partition tables
 	URL:=http://www.gnu.org/software/parted/
 	MAINTAINER:=Entware team, https://entware.net

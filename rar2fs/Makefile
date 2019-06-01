@@ -24,7 +24,7 @@ define Package/rar2fs
 	SECTION:=utils
 	CATEGORY:=Utilities
 	SUBMENU:=Filesystem
-	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS)
+	DEPENDS:=+libfuse +libunrar +librt $(ICONV_DEPENDS) +libubacktrace
 	TITLE:=FUSE file system for reading RAR archives
 	URL:=https://github.com/hasse69/rar2fs
 	MAINTAINER:=Entware team, https://entware.net
