@@ -1,11 +1,13 @@
 #
 # Copyright (C) 2011-2019 Entware
+
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
 # Partial taken from
 # https://github.com/wongsyrone/openwrt-Pcap_DNSProxy/blob/master/Makefile
+#
 
 include $(TOPDIR)/rules.mk
 
@@ -26,11 +28,11 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/pcap_dnsproxy
 	SECTION:=net
 	CATEGORY:=Network
-	DEPENDS:=+libsodium +libpcap +libstdcpp +libevent2 +libevent2-core
+	DEPENDS:=+libsodium +libpcap +libstdcpp +libpthread
 	TITLE:=WinPcap and LibPcap based DNS server
 	URL:=$(PKG_SOURCE_URL)
 	SUBMENU:=IP Addresses and Names
-	MAINTAINER:=Entware team, https://entware.net
+	MAINTAINER:=Entware team, http://entware.net
 endef
 
 define Package/pcap_dnsproxy/description

@@ -1,0 +1,24 @@
+From 3dde7c120223927bd116fbda73a9403157d98e8d Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Thu, 7 Feb 2019 15:25:19 +0100
+Subject: [PATCH] add #include <stdarg.h> for va_list
+
+---
+ include/libtorrent/aux_/session_interface.hpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/libtorrent/aux_/session_interface.hpp b/include/libtorrent/aux_/session_interface.hpp
+index b3738bd..5ecfe1c 100644
+--- a/include/libtorrent/aux_/session_interface.hpp
++++ b/include/libtorrent/aux_/session_interface.hpp
+@@ -49,6 +49,7 @@ POSSIBILITY OF SUCH DAMAGE.
+ #include <boost/weak_ptr.hpp>
+ #include <boost/function.hpp>
+ #include <boost/optional.hpp>
++#include <stdarg.h>
+ 
+ #ifndef TORRENT_DISABLE_LOGGING
+ #include <boost/shared_ptr.hpp>
+-- 
+2.11.0
+
