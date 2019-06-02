@@ -46,6 +46,9 @@ CONFIGURE_ARGS += \
 TARGET_LDFLAGS += \
 	-lpthread
 
+TARGET_CFLAGS += \
+        -std=c++11
+
 define Package/meganz-sdk/install
 	$(INSTALL_DIR) $(1)/opt/bin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/opt/bin/* $(1)/opt/bin
