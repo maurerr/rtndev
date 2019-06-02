@@ -27,7 +27,7 @@ define Package/bip
 	SECTION:=net
 	CATEGORY:=Network
 	SUBMENU:=Instant Messaging
-	DEPENDS:=+libopenssl
+	DEPENDS:=+libopenssl +libubacktrace
 	TITLE:=multi user irc proxy
 	URL:=https://projects.duckcorp.org/projects/bip
 	MAINTAINER:=Entware team, https://entware.net

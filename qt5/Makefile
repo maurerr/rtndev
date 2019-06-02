@@ -47,7 +47,7 @@ endef
 define Package/qt5-core
 	$(call Package/qt5/Default)
 	TITLE+=core
-	DEPENDS+=+libatomic
+	DEPENDS+=+libatomic +libubacktrace
 endef
 
 define Package/qt5-network

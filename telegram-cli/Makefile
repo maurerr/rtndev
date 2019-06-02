@@ -31,7 +31,7 @@ define Package/telegram-cli
 	SECTION:=net
 	CATEGORY:=Network
 	DEPENDS:=+libconfig +libopenssl +libreadline +libevent2 +jansson \
-	    +libpthread +libncursesw +liblua
+	    +libpthread +libncursesw +liblua +libubacktrace
 	TITLE:=CLI for Telegram
 	URL:=$(PKG_SOURCE_URL)
 	MAINTAINER:=Entware team, https://entware.net

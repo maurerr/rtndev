@@ -31,7 +31,7 @@ define Package/mediatomb
 	SECTION:=multimedia
 	CATEGORY:=Multimedia
 	DEPENDS:=+libexif +libsqlite3 +id3lib +file +libjs +libexpat \
-		+$(ICONV_DEPENDS) +libuuid +libflac +libffmpegthumbnailer
+		+$(ICONV_DEPENDS) +libuuid +libflac +libffmpegthumbnailer +libubacktrace
 	TITLE:=A powerfull UPNP media server
 	URL:=http://www.mediatomb.cc
 	MAINTAINER:=Entware team, https://entware.net
