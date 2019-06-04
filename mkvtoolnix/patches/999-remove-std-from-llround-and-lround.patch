@@ -56,13 +56,13 @@ index aa77fc3..9a5c76b 100644
  
  size_t
 diff --git a/src/common/theora.cpp b/src/common/theora.cpp
-index 87a37b6..928fa99 100644
+index a03fb55..476626e 100644
 --- a/src/common/theora.cpp
 +++ b/src/common/theora.cpp
 @@ -64,11 +64,11 @@ theora_parse_identification_header(unsigned char *buffer,
- 
+
    if ((0 != header.parn) && (0 != header.pard)) {
-     if (((float)header.fmbw / (float)header.fmbh) < ((float)header.parn / (float)header.pard)) {
+     if ((static_cast<double>(header.fmbw) / header.fmbh) < (static_cast<double>(header.parn) / header.pard)) {
 -      header.display_width  = std::llround(static_cast<double>(header.fmbw) * header.parn / header.pard);
 +      header.display_width  = llround(static_cast<double>(header.fmbw) * header.parn / header.pard);
        header.display_height = header.fmbh;
@@ -176,17 +176,17 @@ index a6656aa..36d8569 100644
  class generic_packetizer_c;
  class render_groups_c;
 diff --git a/src/merge/generic_packetizer.cpp b/src/merge/generic_packetizer.cpp
-index bc1dafd..40f90fb 100644
+index bd69d6f..83d3685 100644
 --- a/src/merge/generic_packetizer.cpp
 +++ b/src/merge/generic_packetizer.cpp
 @@ -1056,12 +1056,12 @@ generic_packetizer_c::set_headers() {
-             m_ti.m_aspect_ratio = (float)m_hvideo_pixel_width * m_ti.m_aspect_ratio / (float)m_hvideo_pixel_height;
- 
-           if (m_ti.m_aspect_ratio > ((float)m_hvideo_pixel_width / (float)m_hvideo_pixel_height)) {
+             m_ti.m_aspect_ratio = static_cast<double>(m_hvideo_pixel_width) * m_ti.m_aspect_ratio / m_hvideo_pixel_height;
+
+           if (m_ti.m_aspect_ratio > (static_cast<double>(m_hvideo_pixel_width) / m_hvideo_pixel_height)) {
 -            m_hvideo_display_width  = std::llround(m_hvideo_pixel_height * m_ti.m_aspect_ratio);
 +            m_hvideo_display_width  = llround(m_hvideo_pixel_height * m_ti.m_aspect_ratio);
              m_hvideo_display_height = m_hvideo_pixel_height;
- 
+
            } else {
              m_hvideo_display_width  = m_hvideo_pixel_width;
 -            m_hvideo_display_height = std::llround(m_hvideo_pixel_width / m_ti.m_aspect_ratio);
