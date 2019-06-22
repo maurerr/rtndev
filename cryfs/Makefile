@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cryfs
-PKG_VERSION:=0.10.0
-PKG_REV:=4ca139ce8f4a9cca73b4e39672abf000821de51b
-PKG_RELEASE:=1
+PKG_VERSION:=0.9.11
+PKG_REV:=23b11860d3cd848bb6bff5e1a5f4207480e2fab1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
@@ -37,8 +37,7 @@ define Package/cryfs/description
 endef
 
 CMAKE_OPTIONS += \
-	-DBoost_USE_STATIC_LIBS=OFF \
-	-DDISABLE_OPENMP=ON
+	-DBoost_USE_STATIC_LIBS=off
 
 define Package/cryfs/install
 	$(INSTALL_DIR) $(1)/opt/bin
