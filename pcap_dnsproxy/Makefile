@@ -46,6 +46,8 @@ CMAKE_OPTIONS += \
 TARGET_CFLAGS += \
 	-I$(STAGING_DIR)/opt/include
 
+TARGET_CXXFLAGS += -std=c++14
+
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(SED) 's,^\xEF\xBB\xBF,,g' $(PKG_BUILD_DIR)/Source/Auxiliary/ExampleConfig/*
