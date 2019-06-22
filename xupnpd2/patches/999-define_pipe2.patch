@@ -1,0 +1,40 @@
+From fd08de7b65d8af38da124169563875362728e70a Mon Sep 17 00:00:00 2001
+From: maurerr <mariusd84@gmail.com>
+Date: Sat, 22 Jun 2019 09:48:37 +0200
+Subject: [PATCH] two
+
+---
+ main.cpp | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/main.cpp b/main.cpp
+index 463e727..4de14a9 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -25,6 +25,23 @@
+ #include <netinet/tcp.h>
+ #include <sys/socket.h>
+ 
++int __set_errno(int n)
++{
++           errno = n;
++                   return -1;
++}
++
++int
++pipe2 (int pipedes[2], int flags)
++{
++         if (pipedes == NULL)
++                     {
++                                       __set_errno (EINVAL);
++                                                     return -1;
++                                                             }
++           __set_errno (ENOSYS);
++                 return -1;
++}
+ 
+ namespace xupnpd
+ {
+-- 
+2.11.0
+
