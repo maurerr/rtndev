@@ -9,16 +9,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=rblibtorrent
-PKG_VERSION:=1.1.12
-PKG_RELEASE:=2
+PKG_VERSION:=1.1.13
+PKG_RELEASE:=1
 
 PKG_SOURCE:=libtorrent-rasterbar-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/arvidn/libtorrent/releases/download/libtorrent_1_1_12
-PKG_HASH:=a5937134edf3ca8c109403a47f5a5fc93f7b8dca4e97f1a629a8c84288bee7a7
+PKG_SOURCE_URL:=https://github.com/arvidn/libtorrent/releases/download/libtorrent-1_1_13
+#PKG_HASH:=
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/libtorrent-rasterbar-$(PKG_VERSION)
 
-PKG_FIXUP:=autoreconf
+PKG_FIXUP:=autoreconf libtool
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -28,8 +28,7 @@ define Package/rblibtorrent
   CATEGORY:=Libraries
   TITLE:=Rasterbar BitTorrent library
   URL:=http://www.rasterbar.com/products/libtorrent/
-  DEPENDS:=+boost-python +boost-filesystem +boost-regex +boost-thread +boost-program_options +boost-system +libopenssl \
-	+boost-random
+  DEPENDS:=+boost-chrono +boost-python +boost-random +boost-system +libopenssl
 endef
 
 define Package/rblibtorrent/description
@@ -38,25 +37,27 @@ all the other bittorrent implementations around. It is a library and not a
 full featured client, although it comes with a working example client.
 endef
 
-CONFIGURE_ARGS+= \
+CONFIGURE_ARGS += \
 	--disable-debug \
 	--enable-python-binding \
 	--with-openssl=$(STAGING_DIR)/opt \
 	--with-boost=$(STAGING_DIR)/opt \
 	--with-boost-libdir=$(STAGING_DIR)/opt/lib \
-	--with-boost-python=yes
-
-CONFIGURE_VARS+= CC=$(TARGET_CXX)
-
-# Ensure target python headers come bore host headers!!!
-TARGET_CFLAGS+="-I$(STAGING_DIR)/opt/include/python2.7/"
+	CC=$(TARGET_CXX) \
+	CPPFLAGS="$(TARGET_CPPFLAGS) $(shell $(STAGING_DIR)/host/bin/python2.7-config --includes)" \
+	LDFLAGS="$(TARGET_LDFLAGS)" \
+	PYTHON=$(STAGING_DIR_HOSTPKG)/bin/python \
+	PYTHON_CPPFLAGS="-I$(STAGING_DIR)/opt/include/python2.7" \
+	PYTHON_LDFLAGS="$(shell $(STAGING_DIR)/host/bin/python2.7-config --libs)" \
+	PYTHON_LIBS="-L$(STAGING_DIR)/opt/lib -lpython2.7" \
+	PYTHON_SITE_PKG="$(STAGING_DIR)/opt/lib/python2.7/site-packages"
 
 define Build/InstallDev
-	mkdir -p $(1)/opt/include
+	$(INSTALL_DIR) $(1)/opt/include
 	$(CP) $(PKG_INSTALL_DIR)/opt/include/libtorrent $(1)/opt/include/
-	mkdir -p $(1)/opt/lib
+	$(INSTALL_DIR) $(1)/opt/lib
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/*.so* $(1)/opt/lib/
-	mkdir -p $(1)/opt/lib/pkgconfig
+	$(INSTALL_DIR) $(1)/opt/lib/pkgconfig
 	$(CP) $(PKG_INSTALL_DIR)/opt/lib/pkgconfig/libtorrent-rasterbar.pc $(1)/opt/lib/pkgconfig/
 endef
 
