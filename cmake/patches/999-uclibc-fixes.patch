@@ -1,0 +1,57 @@
+diff --git a/Source/CTest/cmCTestTestHandler.cxx b/Source/CTest/cmCTestTestHandler.cxx
+index 0ed56c8..b7bd9db 100644
+--- a/Source/CTest/cmCTestTestHandler.cxx
++++ b/Source/CTest/cmCTestTestHandler.cxx
+@@ -545,7 +545,7 @@ int cmCTestTestHandler::ProcessHandler()
+     }
+     cmCTestLog(this->CTest, HANDLER_OUTPUT,
+                std::endl
+-                 << passColorCode << std::lround(percent) << "% tests passed"
++                 << passColorCode << lround(percent) << "% tests passed"
+                  << this->CTest->GetColorCode(cmCTest::Color::CLEAR_COLOR)
+                  << ", " << failedColorCode << failed.size() << " tests failed"
+                  << this->CTest->GetColorCode(cmCTest::Color::CLEAR_COLOR)
+diff --git a/Source/cmFileCommand.cxx b/Source/cmFileCommand.cxx
+index 7a3954e..d332541 100644
+--- a/Source/cmFileCommand.cxx
++++ b/Source/cmFileCommand.cxx
+@@ -1525,7 +1525,7 @@ public:
+     long OldPercentage = this->CurrentPercentage;
+ 
+     if (total > 0.0) {
+-      this->CurrentPercentage = std::lround(value / total * 100.0);
++      this->CurrentPercentage = lround(value / total * 100.0);
+       if (this->CurrentPercentage > 100) {
+         // Avoid extra progress reports for unexpected data beyond total.
+         this->CurrentPercentage = 100;
+diff --git a/Utilities/cmlibuv/src/unix/thread.c b/Utilities/cmlibuv/src/unix/thread.c
+index 2900470..d784697 100644
+--- a/Utilities/cmlibuv/src/unix/thread.c
++++ b/Utilities/cmlibuv/src/unix/thread.c
+@@ -37,7 +37,7 @@
+ #include <sys/sem.h>
+ #endif
+ 
+-#ifdef __GLIBC__
++#ifndef __UCLIBC__
+ #include <gnu/libc-version.h>  /* gnu_get_libc_version() */
+ #endif
+ 
+@@ -436,7 +436,7 @@ int uv_sem_trywait(uv_sem_t* sem) {
+ 
+ #else /* !(defined(__APPLE__) && defined(__MACH__)) */
+ 
+-#ifdef __GLIBC__
++#ifndef __UCLIBC__
+ 
+ /* Hack around https://sourceware.org/bugzilla/show_bug.cgi?id=12674
+  * by providing a custom implementation for glibc < 2.21 in terms of other
+@@ -601,7 +601,7 @@ static int uv__sem_trywait(uv_sem_t* sem) {
+ }
+ 
+ int uv_sem_init(uv_sem_t* sem, unsigned int value) {
+-#ifdef __GLIBC__
++#ifndef __UCLIBC__
+   uv_once(&glibc_version_check_once, glibc_version_check);
+ #endif
+ 

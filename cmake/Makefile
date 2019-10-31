@@ -27,7 +27,7 @@ define Package/cmake
 	CATEGORY:=Development
 	TITLE:=CMake tools
 	URL:=https://cmake.org
-	DEPENDS:=+libcurl +libpthread +librt +libstdcpp +zlib +zlib-dev +libncursesw
+	DEPENDS:=+libcurl +libpthread +librt +libstdcpp +zlib +zlib-dev +libncursesw +libubacktrace
 	MAINTAINER:=Entware team, https://entware.net
 endef
 
